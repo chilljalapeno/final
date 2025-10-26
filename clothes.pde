@@ -7,26 +7,12 @@ class Clothes {
   ClothingType type;
   int belongsTo;
 
-  Clothes(PVector iPosition, PVector iSize, ClothingType iType, int iBelongsTo) {
+  Clothes(PVector iPosition, PVector iSize, ClothingType iType, int iBelongsTo, PImage iImage) {
     position = iPosition;
     size = iSize;
     type = iType;
     belongsTo = iBelongsTo;
-
-    switch(type) {
-      case hat:
-        image = loadImage("body_1/blouse_1.png");
-        break;
-      case sweater:
-        image = loadImage("body_1/blouse_1.png");
-        break;
-      case pants:
-        image = loadImage("body_1/pants_1.png");
-        break;
-      case shoe:
-        image = loadImage("body_1/shoes_1.png");
-        break;
-    }
+    image = iImage;
   }
 
   void draw() {

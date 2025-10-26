@@ -5,6 +5,7 @@ class Mannequin {
   int mannequinNumber;
   PImage image;
 
+  ArrayList<Clothes> clothes;
   // For scaling the image
   float scaleFactor;
 
@@ -30,28 +31,30 @@ class Mannequin {
     // Bodyparts(position, size, scaleFactor)
     // Head 
     head = new BodyPart(
-      new PVector(position.x + mannequinNumber * size.x + 100, position.y + 0),
+      new PVector(this.position.x + 50, position.y + 0),
       new PVector(140, 160),
       0.5
     );
     // Torso
     torso = new BodyPart(
-      new PVector(position.x + mannequinNumber * size.x + 19, position.y + 160),
+      new PVector(this.position.x  + 9.8, position.y + 80),
       new PVector(300, 340),
       0.5
     );
     // Pants 
     legs = new BodyPart(
-      new PVector(position.x + mannequinNumber * size.x + 19, position.y + 500),
+      new PVector(this.position.x  + 9.8, position.y + 250),
       new PVector(300, 340),
       0.5
     );
     // Boots
     feet = new BodyPart(
-      new PVector(position.x + mannequinNumber * size.x + 70, position.y + 840),
+      new PVector(this.position.x + 35, position.y + 420),
       new PVector(200, 220),
       0.5
     );
+
+    clothes = new ArrayList<Clothes>();
   }
 
   void draw() {
@@ -60,5 +63,8 @@ class Mannequin {
     torso.draw();
     legs.draw();
     feet.draw();
+    for(int i=0; i<clothes.size(); i+=1) {
+      clothes.get(i).draw();
+    }
   }
 }

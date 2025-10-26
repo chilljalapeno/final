@@ -2,7 +2,7 @@ class Glass {
   float transparency;
 
   Glass() {
-    transparency = 255.0;
+    transparency = 150.0;
   }
 
   void draw() {

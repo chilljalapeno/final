@@ -5,7 +5,7 @@ class BodyPart {
 
   BodyPart(PVector iPosition, PVector iSize, float iScaleFactor) {
     size = new PVector(iSize.x*iScaleFactor, iSize.y*iScaleFactor);
-    position = new PVector(iPosition.x*iScaleFactor, iPosition.y*iScaleFactor);
+    position = new PVector(iPosition.x, iPosition.y);
     scaleFactor = iScaleFactor;
   }
 
