@@ -18,13 +18,10 @@ void setup() {
 
   mannequins = new Mannequin[3];
   clothes = new Clothes[9];
-
   ui = new UI();
   ui.setup();
-
   glass = new Glass();
 
-  // Mannequin(mannequinNumber, scalingFactor)
   for(int i=0; i<3; i+=1) {
     mannequins[i] = new Mannequin(
       i,
@@ -35,18 +32,28 @@ void setup() {
 
 void draw() {
   background(0);
-  fill(#FFAC1C, 100);
-  rect(100, 100, 1300, 700);
-  for(int i=0; i<3; i+=1) {
-    mannequins[i].draw();
+  if(mannequins[0].clothes.size()!= 4 || mannequins[1].clothes.size()!= 4 || mannequins[2].clothes.size()!= 3) {
+    fill(#FFAC1C, 100);
+    rect(100, 100, 1300, 700);
+    for(int i=0; i<3; i+=1) {
+      mannequins[i].draw();
+    }
+    ui.draw();
+    glass.draw();
+  } else {
+    textSize(128);
+    fill(#FF0000);
+    textAlign(CENTER, CENTER);
+    text("You win!", width/2, height/2);
   }
-  ui.draw();
-  glass.draw();
+  
 }
 
 void update() {}
 
 void keyPressed() {
+  // After you press the key you grab a piece of clothing based on
+  // what key you press from that specified box
   if(key=='b') {
     glass.transparency -= 10;
   }
@@ -76,6 +83,8 @@ void keyPressed() {
 }
 
 void keyReleased() {
+  // After you release the key it either goes back to the box
+  // or you hit the correct mannequin and the clothing is displayed on it
   if(ui.boxes[0].clothes.size() != 0) {
     if(key=='a') {
       Clothes currentClothes = ui.boxes[0].clothes.get(ui.boxes[0].clothes.size() - 1);
@@ -84,6 +93,8 @@ void keyReleased() {
         currentClothes.size = mannequins[currentClothes.belongsTo].feet.size;
         mannequins[currentClothes.belongsTo].clothes.add(currentClothes);
         ui.boxes[0].clothes.remove(ui.boxes[0].clothes.size() - 1);
+      } else {
+        currentClothes.position = ui.boxes[0].position;
       }
     }
   }
@@ -95,6 +106,9 @@ void keyReleased() {
         currentClothes.size = mannequins[currentClothes.belongsTo].head.size;
         mannequins[currentClothes.belongsTo].clothes.add(currentClothes);
         ui.boxes[1].clothes.remove(ui.boxes[1].clothes.size() - 1);
+      } else {
+     
+        currentClothes.position = ui.boxes[1].position;
       }
     }
   }
@@ -106,6 +120,8 @@ void keyReleased() {
         currentClothes.size = mannequins[currentClothes.belongsTo].torso.size;
         mannequins[currentClothes.belongsTo].clothes.add(currentClothes);
         ui.boxes[2].clothes.remove(ui.boxes[2].clothes.size() - 1);
+      } else {
+        currentClothes.position = ui.boxes[2].position;
       }
     }
   }
@@ -117,6 +133,8 @@ void keyReleased() {
         currentClothes.size = mannequins[currentClothes.belongsTo].legs.size;
         mannequins[currentClothes.belongsTo].clothes.add(currentClothes);
         ui.boxes[3].clothes.remove(ui.boxes[3].clothes.size() - 1);
+      } else {
+        currentClothes.position = ui.boxes[3].position;
       }
     }
   }
